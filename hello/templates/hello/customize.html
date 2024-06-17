@@ -1,0 +1,242 @@
+{% extends 'hello/basic.html' %}
+{% block body %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="container alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert"><!--message.tags is either success or info or debug or warning or error-->
+  <strong>{{ message }}<b> You shall get a reply soon!</b></strong><!--message is the message itself sent as success request-->
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  {% endfor %}
+{% endif %}
+<form method="POST">
+	{% csrf_token %}
+	<div class="container">
+	<div class="row">
+        <div class="col-sm-6"><div class="form-group">
+                  <label>Name</label>
+                  <input type="text" name="name" class="form-control" value="{{request.user.get_username}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Email *</label>
+                  <input type="email" name="email" class="form-control" required="required">
+                </div>
+                <div class="form-group">
+                  <label>Phone *</label>
+                  <input type="tel" name="phone" class="form-control" required="required">
+                </div>
+                <div class="form-group">
+                  <label>No. of members *</label>
+                  <input type="number" id="members" name="members" class="form-control" oninput="memberfunction()" required="required">
+                </div> 
+                <div class="form-group">
+                  <label>Destination</label>
+                  <input type="tel" name="destination" class="form-control" value="{{title}}" readonly>
+                </div> 
+                <div class="form-group">
+                  <label>Plan</label>
+                  <input type="text" name="subject" class="form-control" value="{{number}} days plan" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Start date (yyyy-mm-dd)*</label>
+                  <input type="text" name="start" class="form-control" required="required">
+                </div>
+                <h5> Select below things at once correctly otherwise price will be added twice</h5>
+                <div class="form-group">
+                  <label>Plan forming</label>
+                  {% if number >= 1 %}
+                  <select id="shimla1" name="shimla1" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla1 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+                  
+                  {% if number >= 2 %}
+                  <select id="shimla2" name="shimla2" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla2 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+
+                  {% if number >= 3 %}
+                  <select id="shimla3" name="shimla3" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla3 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+
+                  {% if number >= 4 %}
+                  <select id="shimla4" name="shimla4" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla4 %}
+                    <option value="{{i.possibility}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+
+                  {% if number >= 5 %}
+                  <select id="shimla5" name="shimla5" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla5 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+
+                  {% if number >= 6 %}
+                  <select id="shimla6" name="shimla6" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla6 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+
+                  {% if number >= 7 %}
+                  <select id="shimla7" name="shimla7" onchange="planfunction()">
+                    <option value="NULL">NULL</option>
+                    {% for i in shimla7 %}
+                    <option value="{{i.price}}">{{i.possibility}} Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  <label>Total price for plan</label>
+                  <input type="number" id="total" name="total" class="form-control" value=0 required="required" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Select Hotel (per room price)*</label>
+                  <select id="hotel" name="hotels1" onchange="hotelfunction()" required="required">
+                    <option value="NULL">NULL</option>
+                    {% for i in hotel %}
+                    <option value="{{i.hotel_name}} Rs{{i.price}}">Hotel name: {{i.hotel_name}}  Price Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Select Transport (for public transport and taxi these are one day price and for public it is for 1 member)*</label>
+                  <select id="transport" name="transport" onchange="transportfunction()" required="required">
+                    <option value="NULL">NULL</option>
+                    {% for i in transport1 %}
+                    <option value="{{i.transport_name}}{{i.price}}">Transport name: {{i.transport_name}}  Price Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="number" name="price" class="form-control" id="price" readonly>
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit</button>
+                </div>
+            </div></div></div>
+      
+	</form>
+	<script>
+		{% if thank %}
+		window.location.href="/hello/"
+		{% endif %}
+    {% if thank1 %}
+    alert("something not selected");
+    {% endif %}
+
+    var j=0,price=0,op=0;
+    function memberfunction(){
+      j=document.getElementById('members').value;
+    }
+    function hotelfunction(){
+      var price_hotel=document.getElementById('hotel').value;
+      if(j==0){
+        alert("firstly please enter no of members");
+        document.getElementById('hotel').value="NULL";
+      }
+      if(price_hotel=="NULL"){
+        alert("select something from hotel");
+      }
+    if((j%2)==0){
+      var t=price_hotel.indexOf("Rs");
+      var h=price_hotel.slice(t+2);
+      price=price+(j/2)*parseInt(h);
+      document.getElementById('price').value=price;
+    }
+    else{
+      var t=price_hotel.indexOf("Rs");
+      var h=price_hotel.slice(t+2);
+      price=price+((j-1)/2)*parseInt(h)+parseInt(h);
+      document.getElementById('price').value=price;
+    }
+  }
+  function transportfunction(){
+    var price_transport=document.getElementById('transport').value;
+          if(price_transport=="NULL"){
+        alert("select something from transport");
+      }
+      if(price_transport.indexOf("Taxi")!=-1){
+        var money=price_transport.slice(4);
+        price=price+parseInt(money);
+      document.getElementById('price').value=price;
+      }
+      else{
+        if(j==0){
+        alert("firstly please enter no of members");
+        document.getElementById('transport').value="NULL";
+      }else{
+      var money=price_transport.slice(16);
+      price=price+j*parseInt(money);
+      document.getElementById('price').value=price;
+ }
+      }
+  }
+  function planfunction(){
+    {% if number == 2 %}
+    var shimla2=document.getElementById('shimla2').value;
+    if(shimla2=="NULL"){
+      alert("select other days also");
+    }
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+
+    {% if number == 3 %}
+    var shimla2=document.getElementById('shimla2').value;
+    var shimla3=document.getElementById('shimla3').value
+    if(shimla2=="NULL" || shimla3=="NULL"){
+      alert("select other days also");
+    }
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value) + parseInt(document.getElementById('shimla3').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+
+    {% if number == 4 %}
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value) + parseInt(document.getElementById('shimla3').value) + parseInt(document.getElementById('shimla4').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+
+    {% if number == 5 %}
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value) + parseInt(document.getElementById('shimla3').value) + parseInt(document.getElementById('shimla4').value) + parseInt(document.getElementById('shimla5').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+    
+    {% if number == 6 %}
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value) + parseInt(document.getElementById('shimla3').value) + parseInt(document.getElementById('shimla4').value) + parseInt(document.getElementById('shimla5').value) + parseInt(document.getElementById('shimla6').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+
+    {% if number == 7 %}
+    op=parseInt(document.getElementById('shimla1').value) + parseInt(document.getElementById('shimla2').value) + parseInt(document.getElementById('shimla3').value) + parseInt(document.getElementById('shimla4').value) + parseInt(document.getElementById('shimla5').value) + parseInt(document.getElementById('shimla6').value) + parseInt(document.getElementById('shimla7').value);
+    document.getElementById('total').value=op;
+    {% endif %}
+
+
+
+  }
+	</script>
+{% endblock %}

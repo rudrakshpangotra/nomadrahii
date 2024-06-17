@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %} {% endblock %}</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+   @media only screen and (max-width:500px){
+    .navbar .navbar-brand .myt{
+      width:100px;
+      height:45px;
+    }
+}
+ @media only screen and (min-width:500px){
+    .navbar .navbar-brand .myt{
+      width:160px;
+      height:60px;
+    }
+}
+#hjg,#list{
+  display:none;
+}
+{% block style %} {% endblock %}
+<style>
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+   </style>
+  </head>
+<body>
+  {% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/hello"><div class="myt" style="background-color: black"><img style="width:100%;height:100%;" src='{% static "hello/logoprojectfinal.png" %}'></div></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" style="margin-left: 0px">
+
+      <li class="nav-item">
+        <a class="nav-link" href="/hello">Home</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/hello/contact">Contact Us</a>
+      </li>
+
+        <li class="nav-item">
+            <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Places
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/hello/shimla">Shimla</a>
+    <a class="dropdown-item" href="/hello/kinnaur">Kinnaur</a>
+    <a class="dropdown-item" href="/hello/dalhousie">Dalhousie</a>
+    <a class="dropdown-item" href="/hello/dharamshala">Dharamshala</a>
+    <a class="dropdown-item" href="/hello/manali">Manali</a>
+    <a class="dropdown-item" href="/hello/spiti">Spiti</a>
+  </div>
+</div>
+      </li>
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto" id="hgh">
+      <a href="/hello/login" ><button type="button" class="btn btn-primary">Login</button></a>
+    </ul>
+<ul class="navbar-nav ml-auto" id="hjg" >
+<li class="nav-item"><p style="color: white;margin-top:15px;">
+    Hello, {{request.user.get_username}}
+    <a href="/hello/previous_booking/{{request.user.get_username}}" ><button type="button" style="margin-left:5px"class="btn btn-primary">Previous Bookings</button></a>
+  <a href="{% url 'logout' %}" ><button type="button" style="margin-left:5px"class="btn btn-primary">Logout</button></a></p></li>
+</ul>
+  </div>
+</nav>
+{% block body %} {% endblock %}
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+
+      {% if request.user.is_authenticated %}
+      document.getElementById("hgh").style.display="none";
+      document.getElementById("hjg").style.display="inline";
+      {% endif %}
+    </script>
+    <script>
+
+      function search_dest(){
+        let input=document.getElementById('searchbar').value;
+        if(input.length=0){
+        l=document.getElementById('list');
+        l.style.display="none";
+      }else{
+        input=input.toLowerCase();
+        let x=document.getElementsByClassName('dest');
+        for(i=0;i<x.length;i++){
+          if(x[i].innerHTML.toLowerCase().includes(input)){
+            t=document.getElementById("hell");
+            t.innerHTML=x;
+            //x[i].style.display="list-item";
+          }
+
+        }}
+      }
+    </script>
+
+</body></html>

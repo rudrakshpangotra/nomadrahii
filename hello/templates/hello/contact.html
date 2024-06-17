@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>Contact Us</title>
+    <style>
+    .fa-facebook{color:white; top:20px; position:relative;background-color: green;padding:10px;}
+        .fa-facebook:hover{color: black;background-color: lightgrey;}
+        .fa-twitter{color:white; top:20px; position:relative;background-color: green;padding:10px;}
+        .fa-twitter:hover{color: black;background-color: lightgrey;}
+        .fa-instagram{color:white; top:20px; position:relative;background-color: green;padding:10px;}
+        .fa-instagram:hover{color: black;background-color: lightgrey;}
+        .fa-google-plus{color:white; top:20px; position:relative;background-color: green;padding:10px;}
+        .fa-google-plus:hover{color: black;background-color: lightgrey;}
+        .fa-linkedin{color:white; top:20px; position:relative;background-color: green;padding:10px;}
+        .fa-linkedin:hover{color: black;background-color: lightgrey;}
+         /*@media only screen and (max-width:500px){
+          .n{
+     
+      top:1100px;
+    }
+}
+ @media only screen and (min-width:500px){
+    .n{
+      
+      top:500px;
+    }*/
+
+</style>
+    <style>
+   @media only screen and (max-width:500px){
+    .navbar .navbar-brand .myt{
+      width:100px;
+      height:45px;
+    }
+}
+ @media only screen and (min-width:500px){
+    .navbar .navbar-brand .myt{
+      width:160px;
+      height:60px;
+    }
+}
+#hjg,#list{
+  display:none;
+}
+{% block style %} {% endblock %}
+   </style>
+  </head>
+  {% load static %}
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/hello"><div class="myt" style="background-color: black"><img style="width:100%;height:100%;" src='{% static "hello/logoprojectfinal.png" %}'></div></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" style="margin-left: 0px">
+
+      <li class="nav-item">
+        <a class="nav-link" href="/hello">Home</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/hello/contact">Contact Us</a>
+      </li>
+
+        <li class="nav-item">
+            <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Places
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/hello/shimla">Shimla</a>
+    <a class="dropdown-item" href="/hello/kinnaur">Kinnaur</a>
+    <a class="dropdown-item" href="/hello/dalhousie">Dalhousie</a>
+    <a class="dropdown-item" href="/hello/dharamshala">Dharamshala</a>
+    <a class="dropdown-item" href="/hello/manali">Manali</a>
+    <a class="dropdown-item" href="/hello/spiti">Spiti</a>
+  </div>
+</div>
+      </li>
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto" id="hgh" style="margin-left:10px ">
+      <a href="/hello/login" ><button type="button" class="btn btn-primary">Login</button></a>
+    </ul>
+<ul class="navbar-nav ml-auto" id="hjg" style="margin-left: 10px">
+<li class="nav-item"><p style="color: white;margin-top:15px">Hello, {{request.user.get_username}}<a href="{% url 'logout' %}" ><button type="button" style="margin-left:5px"class="btn btn-primary">Logout</button></a></p></li>
+</ul>
+  </div>
+</nav>
+<div style="background-color:#2F4F4F;margin-bottom: 0px ! important"class="jumbotron">
+    <h3 style="text-align: center;color: white;margin-top: 0px"><u>About Us:-</u></h3>
+    <h4 style="text-align: center;color: white">The Nomad Raahi</h4>
+    <p style="text-align: justify;font-size: 20px;color: white"><i>We are a group of <i style="font-size:25px">NOMADs</i> who decided to let the world experience the
+greatness of the Himalayas. Our vision is that everyone should be able to
+spend their quality time nomading around the way they want and not in
+some. We help you design some great itineraries, provide best in-class stay
+options and their choice of travel option that too in a budget that fits your
+pocket. Whether nomading solo, or in a huge group, or going on a
+honeymoon, we have got you covered.</i></p>
+<h3 style="text-align: center;color: white"><u>Contact Us</u>:-</h3>
+    <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCHrjmzDbKFXrRmkqPCtHgflcBnNnHDGgBGbbThTQbkKCCZGRwXMZsqmkfmQMKrcDSTtJchg" target="_blank"><i class='fas fa-envelope-open' style="font-size: 15px;color:black;text-align: right;top:2px"></i><p style="color:white"><u>Email</u>:-thenomadraahi@gmail.com</p></a>
+    <a href="tel:5647832109"><i class='fas fa-phone' style="font-size: 15px;color:black;text-align: right;top:2px"></i><p style="color:white"><u>Phone</u>:- 5647832109</p></a>
+  </div>
+  <div class="n" style="background-color: black;width:100%;height:200px;"><center><h1 style="color: white;font-size: 30px;font-weight: 500;position:relative ;top:50px">Follow Us</h1><br><br>
+            <i class='fab fa-facebook'></i>
+            <i class='fab fa-twitter'></i>
+            <i class='fab fa-instagram'></i>
+            <i class='fab fa-google-plus'></i>
+            <i class='fab fa-linkedin'></i>
+            <br><br>
+           
+
+            </center></div>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+
+      {% if request.user.is_authenticated %}
+      document.getElementById("hgh").style.display="none";
+      document.getElementById("hjg").style.display="inline";
+      {% endif %}
+    </script>
+    <script>
+
+      function search_dest(){
+        let input=document.getElementById('searchbar').value;
+        if(input.length=0){
+        l=document.getElementById('list');
+        l.style.display="none";
+      }else{
+        input=input.toLowerCase();
+        let x=document.getElementsByClassName('dest');
+        for(i=0;i<x.length;i++){
+          if(x[i].innerHTML.toLowerCase().includes(input)){
+            t=document.getElementById("hell");
+            t.innerHTML=x;
+            //x[i].style.display="list-item";
+          }
+
+        }}
+      }
+    </script>
+  </body>
+ </html>
+    

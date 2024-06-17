@@ -1,0 +1,125 @@
+{% extends 'hello/basic.html' %}
+{% block body %}
+<form method="POST">
+	{% csrf_token %}
+	<div class="container">
+	<div class="row">
+        <div class="col-sm-6"><div class="form-group">
+                  <label>Name</label>
+                  <input type="text" name="name" class="form-control" value="{{request.user.get_username}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Email *</label>
+                  <input type="email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Phone *</label>
+                  <input type="tel" name="phone" class="form-control" required="required">
+                </div>
+                <div class="form-group">
+                  <label>No of members *</label>
+                  <input type="number" name="members" id="members" class="form-control" oninput="memberfunction()" required="required">
+                </div> 
+                 
+                <div class="form-group">
+                  <label>Destination</label>
+                  <input type="tel" name="destination" class="form-control" value="{{title}}" readonly>
+                </div> 
+                <div class="form-group">
+                  <label>Plan</label>
+                  <input type="text" id="plan" name="subject" class="form-control" value="{{title1}} Rs. {{prices.price}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Plan Type</label>
+                  <input type="text" name="subject4" class="form-control" value="{{title2}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Start date (yyyy-mm-dd) *</label>
+                  <input type="text" name="start" class="form-control" required="required">
+                </div>
+                <h5> Select below things at once correctly otherwise price will be added twice</h5>
+                <div class="form-group">
+                  <label>Select Hotel (per room price)*</label>
+                  <select id="hotel" name="hotels1" onchange="hotelfunction()" required="required">
+                    <option value="NULL">NULL</option>
+                  	{% for i in hotel %}
+                  	<option value="{{i.hotel_name}} Rs{{i.price}}">Hotel name: {{i.hotel_name}}  Price Rs. {{i.price}}</option>
+                  	{% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Select Transport (for public transport and taxi these are one day price and for public it is for 1 member)*</label>
+                  <select id="transport" name="transport" onchange="transportfunction()" required="required">
+                    <option value="NULL">NULL</option>
+                    {% for i in transport1 %}
+                    <option value="{{i.transport_name}}{{i.price}}">Transport name: {{i.transport_name}}  Price Rs. {{i.price}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="number" name="price" class="form-control" id="price" readonly>
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit</button>
+                </div>
+            </div></div></div>
+      
+	</form>
+	<script>
+		{% if thank %}
+		window.location.href="/hello/"
+		{% endif %}
+    var j=0,price=0;
+    var t=document.getElementById('plan').value;
+    var m=t.indexOf("Rs");
+    price=price+parseInt(t.slice(m+4));
+    document.getElementById('price').value=price;
+    function memberfunction(){
+      j=document.getElementById('members').value;
+    }
+    function hotelfunction(){
+      var price_hotel=document.getElementById('hotel').value;
+      if(j==0){
+        alert("firstly please enter no of members");
+        document.getElementById('hotel').value="NULL";
+      }
+      if(price_hotel=="NULL"){
+        alert("select something from hotel");
+      }
+    if((j%2)==0){
+      var t=price_hotel.indexOf("Rs");
+      var h=price_hotel.slice(t+2);
+      price=price+(j/2)*parseInt(h);
+      document.getElementById('price').value=price;
+    }
+    else{
+      var t=price_hotel.indexOf("Rs");
+      var h=price_hotel.slice(t+2);
+      price=price+((j-1)/2)*parseInt(h)+parseInt(h);
+      document.getElementById('price').value=price;
+    }
+  }
+  function transportfunction(){
+    var price_transport=document.getElementById('transport').value;
+          if(price_transport=="NULL"){
+        alert("select something from transport");
+      }
+      if(price_transport.indexOf("Taxi")!=-1){
+        var money=price_transport.slice(4);
+        price=price+parseInt(money);
+      document.getElementById('price').value=price;
+      }
+      else{
+        if(j==0){
+        alert("firstly please enter no of members");
+        document.getElementById('transport').value="NULL";
+      }else{
+      var money=price_transport.slice(16);
+      price=price+j*parseInt(money);
+      document.getElementById('price').value=price;
+ }
+      }
+  }
+	</script>
+{% endblock %}

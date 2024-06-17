@@ -1,0 +1,80 @@
+{% extends 'hello/basic.html' %}
+{% block style %}
+.list-group-item{
+  cursor:pointer;
+}
+iframe{
+  border:0px;
+}
+{% endblock %}
+{% block body %}
+  <!-- Trigger the modal with a button -->
+<div class="container">
+    <h2   style="text-align: center">Basic Plans for Dharamshala.</h2>
+    <ul class="list-group">
+        <li class="list-group-item" data-toggle="modal" data-target="#myModal1">3 days Plan</li><a href="/hello/booking/Dharamshala/3 days plan/Basic" ><button type="button" class="btn btn-primary">Book</button></a>
+        <li class="list-group-item" data-toggle="modal" data-target="#myModal2">4 days Plan</li><a href="/hello/booking/Dharamshala/4 days plan/Basic" ><button type="button" class="btn btn-primary">Book</button></a>
+        <li class="list-group-item" data-toggle="modal" data-target="#myModal3">5 days Plan</li><a href="/hello/booking/Dharamshala/5 days plan/Basic" ><button type="button" class="btn btn-primary">Book</button></a>
+    </ul>
+    <br>
+    <br>
+    <a href="/hello/customization/Dharamshala" ><button type="button" class="btn btn-danger">Customize Your Plan</button></a>
+</div>
+    <!-- Modal -->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">3 days plan</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vT8xpt7Q-UM9bQp1zBXhNDykPk5aSge_4LhR5GA1xVuoW0qws4b8ye8AfssLpcdlV_OqSI1G2B2nMuX/pub?embedded=true" width=100% height="800" scroll=True></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">4 days plan</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vT8xpt7Q-UM9bQp1zBXhNDykPk5aSge_4LhR5GA1xVuoW0qws4b8ye8AfssLpcdlV_OqSI1G2B2nMuX/pub?embedded=true" width=100% height="800" scroll=True></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal3" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">5 days plan</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vT8xpt7Q-UM9bQp1zBXhNDykPk5aSge_4LhR5GA1xVuoW0qws4b8ye8AfssLpcdlV_OqSI1G2B2nMuX/pub?embedded=true" width=100% height="800" scroll=True></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

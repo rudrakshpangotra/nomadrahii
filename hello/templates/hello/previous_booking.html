@@ -1,0 +1,29 @@
+{% extends 'hello/basic.html' %}
+{% block title %}previous_bookings{% endblock %}
+{% block body %}
+<h5> Basic Plans </h5>
+{% for i in user %}
+<div class="media" style="margin:20px;">
+  <div class="media-body">
+    <h5 class="mt-0">{{i.user_name}}</h5>
+    <h5 class="mt-0">{{i.user_destination}}</h5>
+   <h5 class="mt-0">{{i.user_plan_link}}</h5>
+   <h5 class="mt-0">{{i.user_plan}}</h5>
+   <h5 class="mt-0">{{i.user_hotel}}</h5>
+  </div>
+</div>
+{% endfor %}
+<h5> Customized Plans </h5>
+{% for i in user1 %}
+<div class="media" style="margin:20px;">
+  <div class="media-body">
+    <h5 class="mt-0">{{i.user_name}}</h5>
+    <h5 class="mt-0">{{i.user_destination}}</h5>
+   <h5 class="mt-0">{{i.user_plan_link}}</h5>
+   <h5 class="mt-0">{{i.user_plan}}</h5>
+   <h5 class="mt-0">{{i.user_hotel}}</h5>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
